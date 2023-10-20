@@ -19,7 +19,7 @@
 buildscript {
     extra.apply {
         set("compose_compiler_version", "1.4.7")
-        set("lifecycle_version", "2.6.1")
+        set("lifecycle_version", "2.6.2")
     }
 }
 
