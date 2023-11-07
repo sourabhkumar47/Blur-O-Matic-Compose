@@ -6,6 +6,7 @@ import android.net.Uri
 import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import androidx.work.workDataOf
 import com.example.bluromatic.DELAY_TIME_MILLIS
 import com.example.bluromatic.KEY_BLUR_LEVEL
 import com.example.bluromatic.KEY_IMAGE_URI
@@ -60,11 +61,13 @@ class BlurWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, 
                 //write bitmap to temp file
                 val outputUri = writeBitmapToFile(applicationContext, output)
 
-                makeStatusNotification(
-                    "Output is $outputUri",
-                    applicationContext
-                )
-                Result.success()
+//                makeStatusNotification(
+//                    "Output is $outputUri",
+//                    applicationContext
+//                )
+                //output data object
+                val outputData = workDataOf(KEY_IMAGE_URI to outputUri.toString())
+                Result.success(outputData)
 
             } catch (throwable: Throwable) {
                 Log.e(
