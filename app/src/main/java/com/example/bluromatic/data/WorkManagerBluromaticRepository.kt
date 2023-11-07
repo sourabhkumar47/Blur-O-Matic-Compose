@@ -47,7 +47,7 @@ class WorkManagerBluromaticRepository(context: Context) : BluromaticRepository {
     override fun applyBlur(blurLevel: Int) {
 
         //clean temp file
-        val continuation =
+        var continuation =
             workManager.beginWith(OneTimeWorkRequest.Companion.from(CleanupWorker::class.java))
 
         //create the workRequest
